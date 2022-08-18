@@ -1,7 +1,11 @@
-import { image } from "./image.mjs";
+import { backgroundImage } from "./backgroundImage.mjs";
 import { playerImage } from "./playerImage.mjs";
+import { foregroundImage } from "./foregroundImage.mjs";
+import { battleBackgroundImage } from "./battleBackgroundImage.mjs";
 
 export {
-  image,
-  playerImage
+  backgroundImage,
+  foregroundImage,
+  playerImage,
+  battleBackgroundImage
 }
