@@ -1,5 +1,16 @@
 import { canvas } from "./data/canvas.mjs";
-import { boundaries, battleZones, keys, background, foreground, player, battleBackground } from "./data/index.mjs";
+import { 
+  boundaries, 
+  battleZones, 
+  keys, 
+  background, 
+  foreground, 
+  player, 
+  battleBackground,
+  draggle,
+  emby,
+  attacks
+} from "./data/index.mjs";
 import { Sprite, Boundary } from "./classes/index.mjs";
 
 
@@ -8,15 +19,11 @@ const context = canvas.getContext('2d');
 canvas.width = 1024;
 canvas.height = 576;
 
-const divContainer = document.querySelector('#overlapping-screen');
+const overlapppingDiv = document.querySelector('#overlapping-screen');
 
-divContainer.style = `
-  position: absolute;
+overlapppingDiv.style = `
   width: ${canvas.width}px;
   height: ${canvas.height}px;
-  background-color: #000;
-  opacity: 0;
-  pointer-events: none;
 ` ;
 
 const movables = [ background, foreground, ...boundaries, ...battleZones ];
@@ -49,7 +56,7 @@ function animate() {
   foreground.draw();
 
   let moving = true;
-  player.moving = false;
+  player.animate = false;
 
   if(battle.initiated) return;
 
@@ -90,7 +97,7 @@ function animate() {
   }
 
   if(keys.up.pressed && lastKey === 'up') {
-    player.moving = true;
+    player.animate = true;
     player.image = player.sprites.up;
 
     for(let i = 0; i < boundaries.length; i++){
@@ -117,7 +124,7 @@ function animate() {
   }
   
   if(keys.down.pressed && lastKey === 'down') {
-    player.moving = true;
+    player.animate = true;
     player.image = player.sprites.down;
 
     for(let i = 0; i < boundaries.length; i++){
@@ -144,7 +151,7 @@ function animate() {
 
 
   if(keys.left.pressed && lastKey === 'left') {
-    player.moving = true;
+    player.animate = true;
     player.image = player.sprites.left;
 
     for(let i = 0; i < boundaries.length; i++){
@@ -170,7 +177,7 @@ function animate() {
   }
 
   if(keys.right.pressed && lastKey === 'right') {
-    player.moving = true;
+    player.animate = true;
     player.image = player.sprites.right;
 
     for(let i = 0; i < boundaries.length; i++){
@@ -196,15 +203,33 @@ function animate() {
   }
 }
 
-// animate();
+const renderedSprites = [draggle, emby];
 
+// animate();
 function animateBattle() {
   window.requestAnimationFrame(animateBattle);
   console.log('animating battle');
   battleBackground.draw();
+  renderedSprites.forEach( (sprite) => {
+    sprite.draw();
+  });
 }
 
 animateBattle();
+
+// battle
+const buttons = document.querySelectorAll('button');
+buttons.forEach( button => {
+  button.addEventListener('click', (e) => {
+    const selectedAttack = attacks[e.currentTarget.textContent];
+    emby.attack({ 
+      attack: selectedAttack,
+      recipient: draggle,
+      renderedSprites
+    });
+  });
+});
+
 
 let lastKey = '';
 window.addEventListener('keydown', (e) => {

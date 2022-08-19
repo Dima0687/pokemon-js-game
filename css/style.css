@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Press Start 2P', cursive;
 }
 
 body {
@@ -13,6 +14,98 @@ body {
 
 }
 
+h1 {
+  text-align: center;
+  margin: 10px;
+}
+
+h2, .pokemon-name, button {
+  font-size: 16px;
+}
+
+button {
+  border: none;
+}
+
+button:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+
 canvas {
   background-color: black;
+}
+
+#game-container {
+  display: inline-block;
+  position: relative;
+}
+
+#overlapping-screen {
+  position: absolute;
+  background-color: #000;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#attack-bar-interface {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+  width: 100%;
+  height: 25%;
+  border: 4px black solid;
+}
+
+#attacks-container {
+  width: 66.9%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#attacks-type-container {
+  width: 33.1%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-left: 4px solid black;
+}
+
+.pokemon-stats-container {
+  background-color: white;
+  width: 250px;
+  position: absolute;
+  border: 4px solid black;
+  padding: 12px;
+}
+
+.pokemon-stats-container.enemy {
+  top: 150px;
+  left: 50px;
+}
+
+.pokemon-stats-container.friend {
+  bottom: 225px;
+  right: 50px;
+}
+
+.health-bar-container {
+  position: relative;
+  margin: 10px 0;
+}
+
+.health-bar-not-attacked,
+.health-bar-attacked {
+  width: 100%;
+  height: 5px;
+  position: absolute;
+}
+
+.health-bar-not-attacked {
+  background-color: #ccc;
+}
+
+.health-bar-attacked {
+  background-color: green;
 }

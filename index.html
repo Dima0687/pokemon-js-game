@@ -1,18 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js" integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-  <script src="./js/index.mjs" type='module' defer></script>
-  <title>Document</title>
-</head>
-<body>
-  <div>
-    <div id="overlapping-screen"></div>
-    <canvas></canvas>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+      integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      defer
+    ></script>
+    <script src="./js/index.mjs" type="module" defer></script>
+    <title>Document</title>
+  </head>
+  <body>
+
+    <div id="game-container">
+      <h1>Pokémon Clone Game</h1>
+      <div id="overlapping-screen"></div>
+
+      <!-- Health bar of the enemy -->
+
+      <div class="pokemon-stats-container enemy">
+        <h3 class="pokemon-name">Draggle</h3>
+        <div class="health-bar-container">
+          <div class="health-bar-not-attacked"></div>
+          <div id='enemy-health-bar' class="health-bar-attacked"></div>
+        </div>
+      </div>
+
+      <!-- Health bar of our friend -->
+      <div class="pokemon-stats-container friend">
+        <h3 class="pokemon-name">Emby</h3>
+        <div class="health-bar-container">
+          <div class="health-bar-not-attacked"></div>
+          <div id='friend-health-bar' class="health-bar-attacked"></div>
+        </div>
+      </div>
+
+      <canvas></canvas>
+
+      <div id="attack-bar-interface">
+        <div id="attacks-container">
+          <button>Tackle</button>
+          <button>Fireball</button>
+        </div>
+        <div id="attacks-type-container">
+          <h2>Attack Type</h2>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

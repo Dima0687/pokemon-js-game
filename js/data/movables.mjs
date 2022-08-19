@@ -3,7 +3,16 @@ import { collisionsMap } from "./collisions.mjs";
 import { battleZonesMap } from "./battleZones.mjs";
 import { Sprite, Boundary } from "../classes/index.mjs";
 import { offset } from "./offset.mjs";
-import { backgroundImage, foregroundImage, playerImage, battleBackgroundImage } from '../images/index.mjs';
+import { 
+  backgroundImage, 
+  foregroundImage, 
+  playerImage, 
+  battleBackgroundImage,
+  draggleImage,
+  embyImage
+} from '../images/index.mjs';
+
+// charakter
 
 const player = new Sprite({
   position: {
@@ -12,10 +21,42 @@ const player = new Sprite({
   },
   image: playerImage.down,
   frames: {
-    max: 4
+    max: 4,
+    hold: 10
   },
   sprites: playerImage
+});
+
+// monsters
+
+const draggle = new Sprite({
+  position: {
+    x: 800,
+    y: 100
+  },
+  image: draggleImage,
+  frames: {
+    max: 4,
+    hold: 30
+  },
+  animate: true,
+  isEnemy: true
+});
+
+const emby = new Sprite({
+  position: {
+    x: 280,
+    y: 325
+  },
+  image: embyImage,
+  frames: {
+    max: 4,
+    hold: 10
+  },
+  animate: true
 })
+
+// maps
 
 const background = new Sprite({ 
   position: {
@@ -33,6 +74,8 @@ const foreground = new Sprite({
   image: foregroundImage
 });
 
+// battleground
+
 const battleBackground = new Sprite({
   position: {
     x: 0,
@@ -40,6 +83,9 @@ const battleBackground = new Sprite({
   },
   image: battleBackgroundImage
 });
+
+
+// boundaries
 
 const symbolNumber = 1025;
 const boundaries = [];
@@ -65,13 +111,20 @@ battleZonesMap.forEach( (row, i ) => {
       }}))
     }
   })
-})
+});
 
 export {
+  // maps
   background,
   foreground,
+  // boundaries & activators
   boundaries,
   battleZones,
+  // charakter
   player,
-  battleBackground
+  // battleground
+  battleBackground,
+  // monsters
+  draggle,
+  emby
 }
