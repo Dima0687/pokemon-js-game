@@ -33,12 +33,13 @@ class Monster extends Sprite {
     this.attacks = attacks;
   }
 
-  /* faint() {
-    this.dialogBox.style = `
+  faint() {
+    const dialogBox = document.querySelector('#dialogue-box');
+    dialogBox.style = `
       display: flex;
     `;
-    this.dialogBox.innerText = `${this.name} fainted!`;
-   
+    dialogBox.innerText = `${this.name} fainted`;
+
     gsap.to(this.position, {
       y: this.position.y + 20
     });
@@ -46,26 +47,14 @@ class Monster extends Sprite {
     gsap.to(this, {
       opacity: 0,
       onComplete: () => {
-        gsap.to('#overlapping-screen', {
-          opacity: 1,
-          onComplete: () => {
-            cancelAnimationFrame(battleAnimationId);
-            battle.initiated = false;
-            animateFunc();
-            gsap.to('#overlapping-screen', {
-              opacity: 0
-            });
-          }
-        });
+        
       }
     });
-    return
-  } */
+
+  }
 
   attack({ attack, recipient, renderedSprites }) {
-
     const dialogBox = document.querySelector('#dialogue-box');
-
     dialogBox.style = `
       display: flex;
     `;
@@ -74,9 +63,10 @@ class Monster extends Sprite {
     const timeline = gsap.timeline();
     let movementDistance = 20;
     let healthBar = '#enemy-health-bar';
-    this.health -= attack.damage;
     let rotation = 1;
 
+    recipient.health -= attack.damage;
+    
     if(this.isEnemy) {
       movementDistance = -20;
       healthBar = '#friend-health-bar';
@@ -93,7 +83,7 @@ class Monster extends Sprite {
           onComplete: () => {
             // enemy actually gets hit
             gsap.to(healthBar, {
-              width: (this.health <= 0) ? `${this.health = 0}%` : `${this.health}%`
+              width: `${recipient.health}%`
             });
 
             gsap.to(recipient.position, {
@@ -144,7 +134,7 @@ class Monster extends Sprite {
 
             // enemy actually gets hit
             gsap.to(healthBar, {
-              width: (this.health <= 0) ? `${this.health = 0}%` : `${this.health}%`
+              width: `${recipient.health}%`
             });
 
             gsap.to(recipient.position, {

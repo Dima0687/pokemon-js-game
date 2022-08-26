@@ -236,14 +236,19 @@ buttons.forEach( button => {
       renderedSprites
     });
 
-    const randomAttack = draggle.attacks[Math.floor(Math.random() * draggle.attacks.length)];
-    queue.push(() => {
-      draggle.attack({ 
-        attack: randomAttack,
-        recipient: emby,
-        renderedSprites
+    // enemy attacks right here
+    const maxAttacks = 2;
+    const randomNumOfAttacks = Math.ceil(Math.random() * maxAttacks); 
+    for(let i = 0; i < randomNumOfAttacks; i++){
+      const randomAttack = draggle.attacks[Math.floor(Math.random() * draggle.attacks.length)];
+      queue.push(() => {
+        draggle.attack({ 
+          attack: randomAttack,
+          recipient: emby,
+          renderedSprites
+        });
       });
-    });
+    }
   });
 
   const typeText = document.querySelector('#attacks-type-text');
@@ -265,6 +270,20 @@ dialogBox.addEventListener('click', (e) => {
     queue[0]();
     queue.shift();
   } else e.currentTarget.style.display = 'none';
+
+  
+  if(draggle.health <= 0){
+    queue.push(() => {
+      draggle.faint();
+    });
+  }
+
+
+  if(emby.health <= 0){
+    queue.push(() => {
+      emby.faint();
+    });
+  }
 });
 
 let lastKey = '';
