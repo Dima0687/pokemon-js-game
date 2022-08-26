@@ -216,7 +216,6 @@ emby.attacks.forEach( (attack) => {
 
 function animateBattle() {
   window.requestAnimationFrame(animateBattle);
-  console.log('animating battle');
   battleBackground.draw();
   renderedSprites.forEach( (sprite) => {
     sprite.draw();
@@ -245,6 +244,18 @@ buttons.forEach( button => {
         renderedSprites
       });
     });
+  });
+
+  const typeText = document.querySelector('#attacks-type-text');
+  button.addEventListener('mouseenter', (e) => {
+    const selectedAttack = attacks[e.currentTarget.textContent];
+    typeText.innerText = selectedAttack.type;
+    typeText.style.color = selectedAttack.color;
+  });
+
+  button.addEventListener('mouseleave', () => {
+    typeText.innerText = 'Attack Type';
+    typeText.style.color = 'black';
   });
 });
 
