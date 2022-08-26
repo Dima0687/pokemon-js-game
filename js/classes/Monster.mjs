@@ -1,8 +1,6 @@
 import { Sprite } from './Sprite.mjs';
 import { 
-  queue,
-  /* battleAnimationId, */
-  animate as animateFunc
+  queue
 } from '../index.mjs';
 
 class Monster extends Sprite {
@@ -45,10 +43,7 @@ class Monster extends Sprite {
     });
 
     gsap.to(this, {
-      opacity: 0,
-      onComplete: () => {
-        
-      }
+      opacity: 0
     });
 
   }

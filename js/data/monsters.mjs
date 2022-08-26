@@ -1,11 +1,5 @@
 import { attacks } from "./attacks.mjs";
 
-// Images
-import { 
-  draggleImage,
-  embyImage
-} from '../images/index.mjs';
-
 // Monster Data
 const monsters = {
   Emby: {
@@ -13,7 +7,9 @@ const monsters = {
       x: 280,
       y: 325
     },
-    image: embyImage,
+    image: {
+      src: './img/monsters/embySprite.png'
+    },
     frames: {
       max: 4,
       hold: 10
@@ -27,7 +23,9 @@ const monsters = {
       x: 800,
       y: 100
     },
-    image: draggleImage,
+    image: {
+      src: './img/monsters/draggleSprite.png'
+    },
     frames: {
       max: 4,
       hold: 30

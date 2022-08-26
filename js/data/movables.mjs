@@ -26,11 +26,6 @@ const player = new Sprite({
   sprites: playerImage
 });
 
-// monsters
-
-const draggle = new Monster(monsters.Draggle);
-const emby = new Monster(monsters.Emby);
-
 // maps
 
 const background = new Sprite({ 
@@ -98,8 +93,5 @@ export {
   // charakter
   player,
   // battleground
-  battleBackground,
-  // monsters
-  draggle,
-  emby
+  battleBackground
 }

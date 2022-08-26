@@ -27,35 +27,37 @@
       <h1>Pokémon Clone Game</h1>
       <div id="overlapping-screen"></div>
 
-      <!-- Health bar of the enemy -->
-
-      <div class="pokemon-stats-container enemy">
-        <h3 class="pokemon-name">Draggle</h3>
-        <div class="health-bar-container">
-          <div class="health-bar-not-attacked"></div>
-          <div id='enemy-health-bar' class="health-bar-attacked"></div>
+     <div id="user-interface">
+        <!-- Health bar of the enemy -->
+  
+        <div class="pokemon-stats-container enemy">
+          <h3 class="pokemon-name">Draggle</h3>
+          <div class="health-bar-container">
+            <div class="health-bar-not-attacked"></div>
+            <div id='enemy-health-bar' class="health-bar-attacked"></div>
+          </div>
         </div>
-      </div>
-
-      <!-- Health bar of our friend -->
-      <div class="pokemon-stats-container friend">
-        <h3 class="pokemon-name">Emby</h3>
-        <div class="health-bar-container">
-          <div class="health-bar-not-attacked"></div>
-          <div id='friend-health-bar' class="health-bar-attacked"></div>
+  
+        <!-- Health bar of our friend -->
+        <div class="pokemon-stats-container friend">
+          <h3 class="pokemon-name">Emby</h3>
+          <div class="health-bar-container">
+            <div class="health-bar-not-attacked"></div>
+            <div id='friend-health-bar' class="health-bar-attacked"></div>
+          </div>
         </div>
-      </div>
+  
+        
+        <div id="attack-bar-interface">
+          <div id="dialogue-box"></div>
+          <div id="attacks-container"></div>
+          <div id="attacks-type-container">
+            <h2 id="attacks-type-text">Attack Type</h2>
+          </div>
+        </div>
+     </div>
 
       <canvas></canvas>
-
-      <div id="attack-bar-interface">
-        <div id="dialogue-box">sdfsd</div>
-        <div id="attacks-container">
-        </div>
-        <div id="attacks-type-container">
-          <h2 id="attacks-type-text">Attack Type</h2>
-        </div>
-      </div>
     </div>
   </body>
 </html>

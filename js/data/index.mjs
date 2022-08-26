@@ -6,9 +6,7 @@ import {
    boundaries,
    battleZones,
    player,
-   battleBackground,
-   draggle,
-   emby
+   battleBackground
 } from './movables.mjs';
 import { offset } from './offset.mjs';
 import { attacks } from './attacks.mjs';
@@ -23,8 +21,6 @@ export {
   foreground,
   player,
   battleBackground,
-  draggle,
-  emby,
   attacks,
   monsters
 }
