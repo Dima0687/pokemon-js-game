@@ -1,15 +1,14 @@
 import { canvas } from "./canvas.mjs";
+import { monsters } from "./index.mjs";
 import { collisionsMap } from "./collisions.mjs";
 import { battleZonesMap } from "./battleZones.mjs";
-import { Sprite, Boundary } from "../classes/index.mjs";
+import { Monster, Sprite, Boundary } from "../classes/index.mjs";
 import { offset } from "./offset.mjs";
 import { 
   backgroundImage, 
   foregroundImage, 
   playerImage, 
   battleBackgroundImage,
-  draggleImage,
-  embyImage
 } from '../images/index.mjs';
 
 // charakter
@@ -29,32 +28,8 @@ const player = new Sprite({
 
 // monsters
 
-const draggle = new Sprite({
-  position: {
-    x: 800,
-    y: 100
-  },
-  image: draggleImage,
-  frames: {
-    max: 4,
-    hold: 30
-  },
-  animate: true,
-  isEnemy: true
-});
-
-const emby = new Sprite({
-  position: {
-    x: 280,
-    y: 325
-  },
-  image: embyImage,
-  frames: {
-    max: 4,
-    hold: 10
-  },
-  animate: true
-})
+const draggle = new Monster(monsters.Draggle);
+const emby = new Monster(monsters.Emby);
 
 // maps
 

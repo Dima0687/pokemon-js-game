@@ -202,10 +202,18 @@ function animate() {
     if(moving) movables.forEach( movable => movable.position.x -=3);
   }
 }
-
-const renderedSprites = [draggle, emby];
-
 // animate();
+
+// battleScene
+const renderedSprites = [draggle, emby];
+emby.attacks.forEach( (attack) => {
+  const button = document.createElement('button');
+  button.innerText = attack.name;
+  
+  const attacksContainer = document.querySelector('#attacks-container');
+  attacksContainer.append(button);
+});
+
 function animateBattle() {
   window.requestAnimationFrame(animateBattle);
   console.log('animating battle');
@@ -218,6 +226,7 @@ function animateBattle() {
 animateBattle();
 
 // battle
+const queue = [];
 const buttons = document.querySelectorAll('button');
 buttons.forEach( button => {
   button.addEventListener('click', (e) => {
@@ -227,9 +236,31 @@ buttons.forEach( button => {
       recipient: draggle,
       renderedSprites
     });
+
+    queue.push( () => {
+      draggle.attack({ 
+        attack: attacks.Tackle,
+        recipient: emby,
+        renderedSprites
+      });
+    });
+    queue.push( () => {
+      draggle.attack({ 
+        attack: attacks.Fireball,
+        recipient: emby,
+        renderedSprites
+      });
+    });
   });
 });
 
+const dialogBox = document.querySelector('#dialogue-box');
+dialogBox.addEventListener('click', (e) => {
+  if( queue.length > 0) {
+    queue[0]();
+    queue.shift();
+  } else e.currentTarget.style.display = 'none';
+});
 
 let lastKey = '';
 window.addEventListener('keydown', (e) => {
@@ -271,5 +302,7 @@ window.addEventListener('keyup', (e) => {
 });
 
 export {
-  context
+  context,
+  queue,
+  animate
 }

@@ -1,4 +1,5 @@
 import { keys } from './keys.mjs';
+import { monsters } from './monsters.mjs';
 import { 
   background,
    foreground,
@@ -13,7 +14,6 @@ import { offset } from './offset.mjs';
 import { attacks } from './attacks.mjs';
 
 
-
 export {
   boundaries,
   battleZones,
@@ -25,5 +25,6 @@ export {
   battleBackground,
   draggle,
   emby,
-  attacks
+  attacks,
+  monsters
 }

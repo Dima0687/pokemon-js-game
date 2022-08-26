@@ -2,8 +2,8 @@
 import { playerImage } from "./playerImage.mjs";
 
 // monsters
-import { draggleImage } from "./draggle.mjs";
-import { embyImage } from "./emby.mjs";
+import { draggleImage } from "./draggleImage.mjs";
+import { embyImage } from "./embyImage.mjs";
 
 // maps
 import { backgroundImage } from "./backgroundImage.mjs";

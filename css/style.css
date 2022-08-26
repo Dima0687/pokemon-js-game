@@ -48,6 +48,20 @@ canvas {
   pointer-events: none;
 }
 
+#dialogue-box {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  background-color: white;
+  cursor: pointer;
+}
+
 #attack-bar-interface {
   display: flex;
   position: absolute;
