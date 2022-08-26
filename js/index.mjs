@@ -9,6 +9,7 @@ import {
   battleBackground,
   attacks,
   monsters,
+  audio
 } from "./data/index.mjs";
 import { Sprite, Boundary, Monster } from "./classes/index.mjs";
 
@@ -39,9 +40,12 @@ const battle = {
   initiated: false,
 };
 
+const newGame = {
+  started: false
+}
+
 function animate() {
   const animationId = window.requestAnimationFrame(animate);
-  console.log("Anim", animationId);
   background.draw();
   boundaries.forEach((boundary) => {
     boundary.draw();
@@ -57,7 +61,7 @@ function animate() {
   let moving = true;
   player.animate = false;
 
-  if (battle.initiated) return;
+  if (battle.initiated || !newGame.started) return;
 
   // activate battle
   if (
@@ -88,9 +92,13 @@ function animate() {
         overlappingArea > (player.width * player.height) / 2 &&
         Math.random() < 0.01
       ) {
-        console.log("activate battle");
         // deactivate current animation loop
         window.cancelAnimationFrame(animationId);
+
+        audio.map.stop();
+        audio.initBattle.play();
+        audio.battle.play();
+
         battle.initiated = true;
         gsap.to("#overlapping-screen", {
           opacity: 1,
@@ -213,7 +221,6 @@ function animate() {
     if (moving) movables.forEach((movable) => (movable.position.x -= 3));
   }
 }
-// animate();
 
 // battleScene
 let renderedSprites;
@@ -239,6 +246,7 @@ function fadeBackToGame() {
         cancelAnimationFrame(battleAnimationId);
         battle.initiated = false;
         animate();
+        audio.map.play();
         userInterface.style.display = "none";
         gsap.to("#overlapping-screen", {
           opacity: 0,
@@ -254,20 +262,20 @@ function initBattle() {
   enemyHealthBar.style.width = "100%";
   friendHealthBar.style.width = "100%";
   attacksContainer.replaceChildren();
-
+  
   draggle = new Monster(monsters.Draggle);
   emby = new Monster(monsters.Emby);
-
+  
   renderedSprites = [draggle, emby];
   emby.attacks.forEach((attack) => {
     const button = document.createElement("button");
     button.innerText = attack.name;
-
+    
     const attacksContainer = document.querySelector("#attacks-container");
     attacksContainer.append(button);
   });
   queue = [];
-
+  
   const buttons = document.querySelectorAll("button");
   buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -284,7 +292,7 @@ function initBattle() {
         });
         fadeBackToGame();
       }
-
+      
       // enemy attacks right here
       const maxAttacks = 2;
       const randomNumOfAttacks = Math.ceil(Math.random() * maxAttacks);
@@ -317,15 +325,16 @@ function initBattle() {
 
 function animateBattle() {
   battleAnimationId = window.requestAnimationFrame(animateBattle);
-  console.log("BattleAnim", battleAnimationId);
   battleBackground.draw();
   renderedSprites.forEach((sprite) => {
     sprite.draw();
   });
 }
 
+animate();
+/* 
 initBattle();
-animateBattle();
+animateBattle(); */
 
 dialogBox.addEventListener("click", (e) => {
   if (queue.length > 0) {
@@ -380,5 +389,18 @@ window.addEventListener("keyup", (e) => {
       break;
   }
 });
+
+// let clicked = false;
+
+const startGameButton = document.querySelector('#start-game');
+const startGameBtnContainer = document.querySelector('#start-button-container');
+
+startGameButton.addEventListener('click', () => {
+  if(!newGame.started){
+    audio.map.play();
+    newGame.started = true;
+    startGameBtnContainer.style.display = 'none';
+  };
+})
 
 export { context, queue };

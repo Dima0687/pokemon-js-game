@@ -2,6 +2,7 @@ import { Sprite } from './Sprite.mjs';
 import { 
   queue
 } from '../index.mjs';
+import { audio } from '../data/audio.mjs';
 
 class Monster extends Sprite {
   constructor({
@@ -45,7 +46,8 @@ class Monster extends Sprite {
     gsap.to(this, {
       opacity: 0
     });
-
+    audio.battle.stop();
+    audio.victory.play();
   }
 
   attack({ attack, recipient, renderedSprites }) {
@@ -77,6 +79,7 @@ class Monster extends Sprite {
           duration: 0.1,
           onComplete: () => {
             // enemy actually gets hit
+            audio.tackleHit.play();
             gsap.to(healthBar, {
               width: `${recipient.health}%`
             });
@@ -102,6 +105,7 @@ class Monster extends Sprite {
 
       case 'Fireball':
         // attacks
+        audio.initFireball.play();
         const fireballImage = new Image();
         fireballImage.src = './img/attacks/fireball.png';
 
@@ -128,6 +132,7 @@ class Monster extends Sprite {
             renderedSprites.splice(1,1);
 
             // enemy actually gets hit
+            audio.fireballHit.play();
             gsap.to(healthBar, {
               width: `${recipient.health}%`
             });

@@ -41,6 +41,30 @@ canvas {
   position: relative;
 }
 
+#user-interface {
+  display: none;
+}
+
+#start-button-container {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+#start-game {
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid black;
+}
+
+#start-game:hover {
+  box-shadow: 2px 2px 5px black;
+}
+
 #overlapping-screen {
   position: absolute;
   background-color: #000;

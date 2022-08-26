@@ -10,7 +10,7 @@ import {
 } from './movables.mjs';
 import { offset } from './offset.mjs';
 import { attacks } from './attacks.mjs';
-
+import { audio } from './audio.mjs';
 
 export {
   boundaries,
@@ -22,5 +22,6 @@ export {
   player,
   battleBackground,
   attacks,
-  monsters
+  monsters,
+  audio
 }
