@@ -237,16 +237,10 @@ buttons.forEach( button => {
       renderedSprites
     });
 
-    queue.push( () => {
+    const randomAttack = draggle.attacks[Math.floor(Math.random() * draggle.attacks.length)];
+    queue.push(() => {
       draggle.attack({ 
-        attack: attacks.Tackle,
-        recipient: emby,
-        renderedSprites
-      });
-    });
-    queue.push( () => {
-      draggle.attack({ 
-        attack: attacks.Fireball,
+        attack: randomAttack,
         recipient: emby,
         renderedSprites
       });
