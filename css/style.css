@@ -37,8 +37,23 @@ canvas {
 }
 
 #game-container {
-  display: inline-block;
+  /* display: inline-block; */
+  display: none;
   position: relative;
+}
+
+#mobile-message {
+  display: block;
+  text-align: center;
+}
+
+@media screen and (min-width: 1025px){
+  #game-container {
+    display: inline-block;
+  }
+  #mobile-message {
+    display: none;
+  }
 }
 
 #user-interface {
